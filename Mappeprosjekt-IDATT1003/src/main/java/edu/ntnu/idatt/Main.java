@@ -1,6 +1,7 @@
 /**
  * Class handling user interface.
  */
+
 package edu.ntnu.idatt;
 
 public class Main {

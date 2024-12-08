@@ -33,7 +33,7 @@ public class Grocery {
    * @throws IllegalArgumentException if any of the inputs are invalid.
    */
   public Grocery(String name, double amount, String unit, LocalDate expiryDate, double unitPrice) {
-    // Datavalidation
+    // Data validation
     if (name == null || name.trim().isEmpty()) {
       throw new IllegalArgumentException("Name is null or empty");
     }
@@ -46,8 +46,10 @@ public class Grocery {
     if (expiryDate == null || expiryDate.isAfter(LocalDate.now())) {
       throw new IllegalArgumentException("Expiry date cannot be in the past (you are stinky grrr)");
     }
-    /* No validation of unitprice due to possible campaigns where food can be received for free
-    or companies being paid specifically to use and promote the wares. */
+    /* No validation of unitPrice due to possible campaigns where food can be
+    received for free or companies being paid specifically to use and promote
+    the wares, resulting in a negative price. */
+
     this.name = name;
     this.amount = amount;
     this.unit = unit;
