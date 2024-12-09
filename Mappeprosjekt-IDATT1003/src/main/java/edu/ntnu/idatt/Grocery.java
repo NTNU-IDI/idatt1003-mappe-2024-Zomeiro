@@ -139,6 +139,6 @@ public class Grocery {
   @Override
   public String toString() {
     return getName() + ":\nAmount: " + getAmount() + "\nUnit: " + getUnit() + "\nExpiryDate: "
-        + getExpiryDate();
+        + getExpiryDate().toString();
   }
 }
