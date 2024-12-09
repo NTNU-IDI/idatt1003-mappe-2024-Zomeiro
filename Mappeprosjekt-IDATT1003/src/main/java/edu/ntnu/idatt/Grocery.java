@@ -15,7 +15,7 @@ public class Grocery {
 
   private final String name;
   private double amount;
-  private final String unit;
+  private final Unit unit;
   private LocalDate expiryDate;
   private final double unitPrice;
 
@@ -32,7 +32,7 @@ public class Grocery {
    *                   special campaigns.
    * @throws IllegalArgumentException if any of the inputs are invalid.
    */
-  public Grocery(String name, double amount, String unit, LocalDate expiryDate, double unitPrice) {
+  public Grocery(String name, double amount, Unit unit, LocalDate expiryDate, double unitPrice) {
     // Data validation
     if (name == null || name.trim().isEmpty()) {
       throw new IllegalArgumentException("Name is null or empty");
@@ -40,8 +40,8 @@ public class Grocery {
     if (amount <= 0) {
       throw new IllegalArgumentException("Amount must be greater than 0");
     }
-    if (unit == null || !(unit.equalsIgnoreCase("litre") || unit.equalsIgnoreCase("gram"))) {
-      throw new IllegalArgumentException("Unit must be either \"litre\" or \"gram\"");
+    if (unit == null) {
+      throw new IllegalArgumentException("Unit cannot be null");
     }
     if (expiryDate == null || expiryDate.isAfter(LocalDate.now())) {
       throw new IllegalArgumentException("Expiry date cannot be in the past (you are stinky grrr)");
@@ -80,7 +80,7 @@ public class Grocery {
    *
    * @return the unit of the item (e.g., "litre" or "gram").
    */
-  public String getUnit() {
+  public Unit getUnit() {
     return unit;
   }
 
