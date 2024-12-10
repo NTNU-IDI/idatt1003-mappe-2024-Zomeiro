@@ -121,6 +121,9 @@ public class Grocery {
    */
   public void setAmount(double amount) {
     this.amount = amount;
+    if (amount < 0) {
+      throw new IllegalArgumentException("Amount must be greater than 0");
+    }
   }
 
   /**
@@ -130,6 +133,11 @@ public class Grocery {
    * @throws IllegalArgumentException if the expiry date is invalid.
    */
   public void setExpiryDate(LocalDate expiryDate) {
+    if (expiryDate == null) {
+      throw new IllegalArgumentException("Expiry date cannot be null");
+    } else if (expiryDate.isBefore(LocalDate.now())) {
+      throw new IllegalArgumentException("Expiry date cannot be in the past");
+    }
     this.expiryDate = expiryDate;
   }
 
