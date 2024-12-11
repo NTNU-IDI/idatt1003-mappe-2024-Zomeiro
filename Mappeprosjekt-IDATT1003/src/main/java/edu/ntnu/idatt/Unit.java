@@ -7,7 +7,7 @@ public enum Unit {
   /**
    * Unit representing grams.
    */
-  GRAM,
+  KILOGRAM,
 
   /**
    * Unit representing litres.
@@ -22,8 +22,8 @@ public enum Unit {
    */
   @Override
   public String toString() {
-    if (this == GRAM) {
-      return "gram";
+    if (this == KILOGRAM) {
+      return "kilogram";
     } else if (this == LITRE) {
       return "litre";
     } else {
