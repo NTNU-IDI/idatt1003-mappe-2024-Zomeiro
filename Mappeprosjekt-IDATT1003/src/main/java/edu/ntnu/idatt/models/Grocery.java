@@ -1,4 +1,4 @@
-package edu.ntnu.idatt;
+package edu.ntnu.idatt.models;
 
 import java.time.LocalDate;
 

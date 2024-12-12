@@ -2,6 +2,9 @@ package edu.ntnu.idatt;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import edu.ntnu.idatt.models.Grocery;
+import edu.ntnu.idatt.models.Recipe;
+import edu.ntnu.idatt.models.Unit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

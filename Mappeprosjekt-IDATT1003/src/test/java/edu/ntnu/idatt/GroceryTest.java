@@ -1,5 +1,7 @@
 package edu.ntnu.idatt;
 
+import edu.ntnu.idatt.models.Grocery;
+import edu.ntnu.idatt.models.Unit;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package edu.ntnu.idatt;
+package edu.ntnu.idatt.models;
 
 import java.util.List;
 
@@ -74,7 +74,7 @@ public class Recipe {
    * @param newPortions the new number of portions (must be greater than 0)
    * @throws IllegalArgumentException if newPortions is less than or equal to 0
    */
-  void setPortions(double newPortions) {
+  public void setPortions(double newPortions) {
     if (newPortions <= 0) {
       throw new IllegalArgumentException("New portions must be greater than 0.");
     }

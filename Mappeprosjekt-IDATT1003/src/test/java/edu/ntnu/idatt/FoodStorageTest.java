@@ -1,5 +1,8 @@
 package edu.ntnu.idatt;
 
+import edu.ntnu.idatt.models.FoodStorage;
+import edu.ntnu.idatt.models.Grocery;
+import edu.ntnu.idatt.models.Unit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -70,8 +73,6 @@ class FoodStorageTest {
 
     @Test
     void testDisplayGroceries() {
-        // This test ensures that displayGroceries runs without errors.
-        // Ideally, you would redirect System.out and check the printed output.
         assertDoesNotThrow(() -> foodStorage.displayGroceries());
     }
 }

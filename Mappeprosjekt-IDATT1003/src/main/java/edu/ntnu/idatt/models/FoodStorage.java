@@ -1,4 +1,4 @@
-package edu.ntnu.idatt;
+package edu.ntnu.idatt.models;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,6 +20,15 @@ public class FoodStorage {
    */
   public FoodStorage() {
     groceries = new HashMap<>();
+  }
+
+  /**
+   * Returns the grocery list.
+   *
+   * @return grocery list
+   */
+  public HashMap<String, ArrayList<Grocery>> getGroceries() {
+    return groceries;
   }
 
   /**
@@ -146,7 +155,6 @@ public class FoodStorage {
       groceries.keySet().stream()
           .sorted()
           .forEach(key -> {
-            System.out.println(key + ":");
             groceries.get(key).forEach(System.out::println);
           });
     }

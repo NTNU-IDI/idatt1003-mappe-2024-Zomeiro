@@ -1,4 +1,4 @@
-package edu.ntnu.idatt;
+package edu.ntnu.idatt.models;
 
 /**
  * Enum representing units of measurement for groceries. Currently supports "gram" and "litre".
