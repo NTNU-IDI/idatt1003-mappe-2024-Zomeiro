@@ -118,7 +118,10 @@ public class FoodStorage {
    */
   public void displayGroceryByKey(String groceryName) {
     if (groceryName == null) {
-      throw new IllegalArgumentException("grocery name cannot be null");
+      throw new IllegalArgumentException("Grocery name cannot be null");
+    }
+    if (!groceries.containsKey(groceryName)) {
+      throw new IllegalArgumentException("No grocery found with the name: " + groceryName);
     }
     if (groceries.containsKey(groceryName)) {
       for (Grocery g : groceries.get(groceryName)) {
