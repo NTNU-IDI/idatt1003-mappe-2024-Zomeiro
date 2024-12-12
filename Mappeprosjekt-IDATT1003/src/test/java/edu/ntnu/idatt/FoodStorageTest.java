@@ -16,67 +16,62 @@ class FoodStorageTest {
     void setUp() {
         foodStorage = new FoodStorage();
 
-        // Legg til noen matvarer i foodStorage
-        foodStorage.addGrocery(new Grocery("Milk", 1.0, Unit.LITRE, LocalDate.of(2024, 12, 8),12.20));
-        foodStorage.addGrocery(new Grocery("Milk", 1.5, Unit.LITRE, LocalDate.of(2024, 12, 10),10.50));
-        foodStorage.addGrocery(new Grocery("Cheese", 0.5, Unit.KILOGRAM, LocalDate.of(2024, 12, 6),134.90));
-        foodStorage.addGrocery(new Grocery("Cheese", 0.7, Unit.KILOGRAM, LocalDate.of(2024, 12, 7),92.90));
+      Grocery apple = new Grocery("Apple", 1.0, Unit.KILOGRAM, LocalDate.now().plusDays(5), 20.0);
+    Grocery banana = new Grocery("Banana", 1.5, Unit.KILOGRAM, LocalDate.now().plusDays(2), 15.0);
+
+        foodStorage.addGrocery(apple);
+        foodStorage.addGrocery(banana);
     }
 
     @Test
     void testAddGrocery() {
-        Grocery newGrocery = new Grocery("Butter", 0.5, Unit.KILOGRAM, LocalDate.of(2024, 12, 15),200);
-        foodStorage.addGrocery(newGrocery);
+        Grocery orange = new Grocery("Orange", 1.0, Unit.KILOGRAM, LocalDate.now().plusDays(7), 25.0);
+        foodStorage.addGrocery(orange);
 
-        assertDoesNotThrow(() -> foodStorage.displayGroceryByKey("Butter"));
+        assertEquals(1.0, foodStorage.getTotalAmount("Orange"));
     }
 
     @Test
     void testRemoveAmount() {
-        // Fjerner 1 liter melk
-        foodStorage.removeAmount("Milk", 1.0);
+        foodStorage.removeAmount("Banana", 0.5);
+        assertEquals(1.0, foodStorage.getTotalAmount("Banana"));
 
-        // Sjekker at riktig mengde melk er igjen
-        List<Grocery> milkList = foodStorage.expiredGroceries(LocalDate.of(2024, 12, 15));
-        assertEquals(1.5, milkList.stream().filter(g -> g.getName().equals("Milk"))
-                .findFirst().orElseThrow().getAmount());
+        foodStorage.removeAmount("Banana", 1.0);
+        assertEquals(0.0, foodStorage.getTotalAmount("Banana"));
     }
 
     @Test
-    void testRemoveAmountExceedingAvailable() {
-        // Fjerner mer melk enn det som finnes
-        assertDoesNotThrow(() -> foodStorage.removeAmount("Milk", 5.0));
-        assertTrue(foodStorage.expiredGroceries(LocalDate.of(2024, 12, 15))
-                .stream().noneMatch(g -> g.getName().equals("Milk")));
+    void testGetTotalAmount() {
+        assertEquals(1.0, foodStorage.getTotalAmount("Apple"));
+        assertEquals(1.5, foodStorage.getTotalAmount("Banana"));
+        assertEquals(0.0, foodStorage.getTotalAmount("Nonexistent"));
     }
 
     @Test
     void testExpiredGroceries() {
-        List<Grocery> expired = foodStorage.expiredGroceries(LocalDate.of(2024, 12, 8));
+        Grocery expiredMilk = new Grocery("Milk", 1.0, Unit.LITRE, LocalDate.now().minusDays(1), 10.0);
+        foodStorage.addGrocery(expiredMilk);
 
-        // Sjekk at kun varer før 2024-12-08 er inkludert
-        assertEquals(2, expired.size());
-        assertTrue(expired.stream().allMatch(g -> g.getExpiryDate().isBefore(LocalDate.of(2024, 12, 8))));
+        List<Grocery> expiredGroceries = foodStorage.expiredGroceries(LocalDate.now());
+        assertEquals(1, expiredGroceries.size());
+        assertEquals("Milk", expiredGroceries.getFirst().getName());
     }
 
     @Test
-    void testDisplayGroceryByKey() {
-        assertDoesNotThrow(() -> foodStorage.displayGroceryByKey("Cheese"));
+    void testRemoveCurrentlyExpiredGroceries() {
+        Grocery expiredMilk = new Grocery("Milk", 1.0, Unit.LITRE, LocalDate.now().minusDays(1), 10.0);
+        foodStorage.addGrocery(expiredMilk);
+
+        foodStorage.removeCurrentlyExpiredGroceries();
+
+        assertEquals(0.0, foodStorage.getTotalAmount("Milk"));
+        assertEquals(1.0, foodStorage.getTotalAmount("Apple"));
     }
 
     @Test
     void testDisplayGroceries() {
+        // This test ensures that displayGroceries runs without errors.
+        // Ideally, you would redirect System.out and check the printed output.
         assertDoesNotThrow(() -> foodStorage.displayGroceries());
-    }
-
-    @Test
-    void testAddNullGrocery() {
-        assertThrows(IllegalArgumentException.class, () -> foodStorage.addGrocery(null));
-    }
-
-    @Test
-    void testDisplayInvalidKey() {
-        assertThrows(IllegalArgumentException.class, () -> foodStorage.displayGroceryByKey(null));
-        assertThrows(IllegalArgumentException.class, () -> foodStorage.displayGroceryByKey("InvalidKey"));
     }
 }

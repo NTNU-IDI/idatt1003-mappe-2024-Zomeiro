@@ -139,12 +139,12 @@ public class FoodStorage {
     if (groceries.isEmpty()) {
       System.out.println("No groceries found");
     } else {
-      ArrayList<String> sortedKeys = new ArrayList<>(groceries.keySet());
-      Collections.sort(sortedKeys);
-
-      for (String key : sortedKeys) {
-        System.out.println(key + ": " + groceries.get(key));
-        sortedKeys.forEach(k -> groceries.get(k).forEach(System.out::println));
+        groceries.keySet().stream()
+            .sorted()
+            .forEach(key -> {
+              System.out.println(key + ":");
+              groceries.get(key).forEach(System.out::println);
+            });
       }
     }
   }
