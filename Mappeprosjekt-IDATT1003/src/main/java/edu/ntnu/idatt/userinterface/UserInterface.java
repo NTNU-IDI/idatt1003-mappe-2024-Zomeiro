@@ -63,7 +63,7 @@ public class UserInterface {
       System.out.println("6. Suggest available recipes");
       System.out.println("7. Display a recipe by name");
       System.out.println("8. Prepare a recipe");
-      System.out.println("9. Exit");
+      System.out.println("10. Exit");
       System.out.print("Choose an option: ");
 
       try {
@@ -96,6 +96,9 @@ public class UserInterface {
             prepareRecipe();
             break;
           case 9:
+            valueExpired();
+            break;
+          case 10:
             System.out.println("Exiting... Goodbye!");
             running = false;
             break;
@@ -130,7 +133,7 @@ public class UserInterface {
     System.out.print("Enter expiration date (YYYY-MM-DD): ");
     LocalDate date = LocalDate.parse(scanner.nextLine());
 
-    System.out.print("Enter price: ");
+    System.out.print("Enter price per unit: ");
     double price = scanner.nextDouble();
     scanner.nextLine(); // Consume newline
 
@@ -146,6 +149,16 @@ public class UserInterface {
     String name = scanner.nextLine();
     String grocery = foodStorage.displayGroceryByKey(name);
     System.out.println(grocery != null ? grocery : "Grocery not found.");
+  }
+
+  /**
+   * Prints total value of expired food items.
+   */
+  private void valueExpired() {
+    System.out.print("Enter date: ");
+    LocalDate date = LocalDate.parse(scanner.nextLine());
+    double value = foodStorage.valueOfExpiredGroceries(date);
+    System.out.println("Total value of expired items is: " + value);
   }
 
   /**

@@ -115,6 +115,23 @@ public class FoodStorage {
   }
 
   /**
+   * Returns value of all expired groceries before the given date.
+   *
+   * @param date the cutoff date
+   * @return value of all expired groceries
+   */
+  public double valueOfExpiredGroceries(LocalDate date) {
+    if (date == null) {
+      throw new IllegalArgumentException("date cannot be null");
+    }
+    double totalValue = 0.0;
+    for (Grocery g : expiredGroceries(date)) {
+      totalValue += g.getAmount() * g.getUnitPrice();
+    }
+    return totalValue;
+  }
+
+  /**
    * Removes all expired groceries from the storage.
    */
   //Method written by ChatGPT
