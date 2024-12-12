@@ -25,7 +25,7 @@ public class Grocery {
    *
    * @param name       the name of the grocery item, must not be null or empty.
    * @param amount     the quantity of the item, must be greater than 0.
-   * @param unit       the unit of measurement for the item (e.g., "litre" or "gram"), must be
+   * @param unit       the unit of measurement for the item (e.g., "litre" or "kilogram"), must be
    *                   valid.
    * @param expiryDate the expiry date of the item, must not be in the past.
    * @param unitPrice  the price per unit of the item. Negative or zero prices are allowed for
