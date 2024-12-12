@@ -65,6 +65,28 @@ public class FoodStorage {
   }
 
   /**
+   * Calculates the total amount of a grocery in FoodStorage given its key.
+   *
+   * @param groceryName the name of the grocery
+   * @return the total amount of the grocery, or 0.0 if the grocery is not found
+   * @throws IllegalArgumentException if the grocery name is null or empty
+   */
+  public double getTotalAmount(String groceryName) {
+    if (groceryName == null || groceryName.trim().isEmpty()) {
+      throw new IllegalArgumentException("Grocery name cannot be null or empty");
+    }
+
+    if (!groceries.containsKey(groceryName)) {
+      return 0.0; // No such grocery found
+    }
+
+    // Sum up the amounts of all groceries with the given name
+    return groceries.get(groceryName).stream()
+        .mapToDouble(Grocery::getAmount)
+        .sum();
+  }
+
+  /**
    * Returns a list of all expired groceries before the given date.
    *
    * @param date the cutoff date
