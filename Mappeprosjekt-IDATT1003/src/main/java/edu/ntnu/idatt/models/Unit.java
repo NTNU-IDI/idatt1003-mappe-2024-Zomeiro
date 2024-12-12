@@ -1,5 +1,7 @@
 package edu.ntnu.idatt.models;
 
+//javadoc commentary written by ChatGPT
+
 /**
  * Enum representing units of measurement for groceries. Currently supports "gram" and "litre".
  */

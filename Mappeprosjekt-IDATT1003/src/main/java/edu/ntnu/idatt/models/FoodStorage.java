@@ -101,6 +101,8 @@ public class FoodStorage {
         .sum();
   }
 
+  //All javadoc commentary provided by OpenAI's ChatGPT and double-checked by hand
+
   /**
    * Returns a list of all expired groceries before the given date.
    *

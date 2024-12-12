@@ -1,6 +1,7 @@
 package edu.ntnu.idatt.models;
 
 import java.util.List;
+//javadoc commentary written by ChatGPT
 
 /**
  * Represents a recipe with a description, instructions, ingredients, and portions.

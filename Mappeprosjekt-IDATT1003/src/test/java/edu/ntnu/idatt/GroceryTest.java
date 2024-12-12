@@ -1,3 +1,5 @@
+//Unit test code provided by OpenAI's ChatGPT and double-checked and debugged by hand
+
 package edu.ntnu.idatt;
 
 import edu.ntnu.idatt.models.Grocery;

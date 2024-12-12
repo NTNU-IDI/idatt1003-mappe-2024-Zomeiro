@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//All javadoc commentary provided by OpenAI's ChatGPT and double-checked by hand
+//Most code provided by ChatGPT and debugged/altered to fit application
+
 /**
  * Represents the user interface for managing FoodStorage and CookBook systems. Provides options to
  * add, view, remove groceries, display recipes, and check availability.
@@ -52,6 +55,7 @@ public class UserInterface {
    */
   public void start() {
     boolean running = true;
+
 
     while (running) {
       System.out.println("\n--- Food Storage & CookBook Menu ---");

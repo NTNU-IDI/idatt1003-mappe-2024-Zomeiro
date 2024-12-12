@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+//All javadoc commentary provided by OpenAI's ChatGPT and double-checked by hand
+
 /**
  * Represents a cookbook that integrates with a FoodStorage system to manage recipes and
  * ingredients.
