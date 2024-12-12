@@ -45,8 +45,6 @@ public class Grocery {
     }
     if (expiryDate == null) {
       throw new IllegalArgumentException("Expiry date cannot be null");
-    } else if (expiryDate.isBefore(LocalDate.now())) {
-      throw new IllegalArgumentException("Expiry date cannot be in the past");
     }
     /* No validation of unitPrice due to possible campaigns where food can be
     received for free or companies being paid specifically to use and promote
