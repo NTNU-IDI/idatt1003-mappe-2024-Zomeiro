@@ -45,17 +45,17 @@ public class FoodStorage {
   public void removeAmount(String groceryName, double amountRemoved) {
     /* tolerance set to 1g/1ml in order to circumvent floating point inaccuracies
     when trying to remove the entire amount */
-    double tolerance = 0.001;
+    final double tolerance = 0.001;
     if (groceryName == null || groceryName.trim().isEmpty()) {
       throw new IllegalArgumentException("Grocery name cannot be null or empty");
     }
     if (!groceries.containsKey(groceryName)) {
       throw new IllegalArgumentException("No grocery found with the name: " + groceryName);
     }
-    if (getTotalAmount(groceryName) < amountRemoved + tolerance) {
+    if (getTotalAmount(groceryName) < amountRemoved) {
       throw new IllegalArgumentException("Amount to remove cannot be larger than the total amount");
     }
-    
+
     groceries.get(groceryName).sort(Comparator.comparing(Grocery::getExpiryDate));
     while (amountRemoved > tolerance) {
       if (groceries.get(groceryName).getFirst().getAmount() > amountRemoved) {
@@ -122,16 +122,18 @@ public class FoodStorage {
    * @param groceryName the name of the grocery to display
    * @throws IllegalArgumentException if the grocery name is null
    */
-  public void displayGroceryByKey(String groceryName) {
+  public String displayGroceryByKey(String groceryName) {
     if (groceryName == null) {
       throw new IllegalArgumentException("Grocery name cannot be null");
     }
     if (!groceries.containsKey(groceryName)) {
       throw new IllegalArgumentException("No grocery found with the name: " + groceryName);
     }
+    StringBuilder groceryString = new StringBuilder();
     for (Grocery g : groceries.get(groceryName)) {
-      System.out.println(g.toString());
+      groceryString.append(g.toString()).append("\n");
     }
+    return groceryString.toString();
   }
 
   /**
