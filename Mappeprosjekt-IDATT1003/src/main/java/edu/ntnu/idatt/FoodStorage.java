@@ -93,12 +93,10 @@ public class FoodStorage {
    * @return a list of expired groceries
    */
   public List<Grocery> expiredGroceries(LocalDate date) {
-    List<Grocery> expiredGroceriesList = new ArrayList<>();
-    for (List<Grocery> groceryList : groceries.values()) {
-      expiredGroceriesList.addAll(
-          groceryList.stream().filter(g -> g.getExpiryDate().isBefore(date)).toList());
-    }
-    return expiredGroceriesList;
+    return groceries.values().stream()
+        .flatMap(List::stream)
+        .filter(g -> g.getExpiryDate().isBefore(date))
+        .toList();
   }
 
   /**
